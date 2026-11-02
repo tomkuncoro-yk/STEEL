@@ -113,11 +113,13 @@ button.pill {
   border-radius: var(--radius-card);
   background: var(--surface);
   text-align: center;
-  cursor: pointer;
   transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
-.dropzone:hover,
+.dropzone .pill {
+  margin-block: 2px;
+}
+
 .dropzone.is-dragging {
   border-color: var(--ink);
   background: var(--surface-soft);
@@ -133,6 +135,62 @@ button.pill {
 .dropzone-note {
   transform: rotate(-3deg);
   font-size: 1rem;
+}
+
+.upload {
+  display: grid;
+  gap: 10px;
+}
+
+/* Collapsible paste box */
+.paste {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.paste summary {
+  padding: 8px 14px;
+  font-family: var(--font-inter);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  list-style: none;
+}
+
+.paste summary::-webkit-details-marker {
+  display: none;
+}
+
+.paste summary::before {
+  content: '+';
+  display: inline-block;
+  width: 1em;
+  margin-right: 6px;
+  text-align: center;
+}
+
+.paste[open] summary::before {
+  content: '−';
+}
+
+.paste-body {
+  display: grid;
+  gap: 10px;
+  padding: 2px 14px 14px;
+}
+
+.paste-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px 14px;
+}
+
+.paste-actions .field {
+  min-width: 200px;
+  flex: 1 1 200px;
 }
 
 .file-card {
@@ -159,11 +217,6 @@ button.pill {
 
 .file-card-actions .pill {
   padding: 0.4rem 0.85rem;
-}
-
-.upload:focus-within .dropzone {
-  outline: 3px solid var(--ink);
-  outline-offset: 3px;
 }
 
 /* ---------- Column step ---------- */

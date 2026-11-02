@@ -57,7 +57,7 @@ export default function FilterAndCount() {
             <span className="step-number" aria-hidden="true">
               1
             </span>
-            <h2>Upload your CSV</h2>
+            <h2>Upload or paste your data</h2>
           </div>
           <UploadStep dataset={dataset} onLoad={handleLoad} onClear={handleClear} />
         </li>
