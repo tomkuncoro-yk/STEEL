@@ -447,7 +447,19 @@ main:focus {
 }
 
 .group-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
   padding-top: 16px;
+}
+
+/* The construction picture is the main item on these pages: big, square, edge to edge */
+.group-hero .hero-art {
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  overflow: hidden;
+}
+
+.group-hero .hero-art img {
+  object-fit: cover;
 }
 
 .planned {
@@ -537,6 +549,14 @@ main:focus {
     order: -1;
     width: 100%;
     max-width: 260px;
+  }
+
+  .group-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .group-hero .hero-art {
+    max-width: 360px;
   }
 
   .privacy-grid {

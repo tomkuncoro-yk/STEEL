@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { groups } from '../tools'
+import constructionArt from '../assets/art/under-construction.webp'
 
 export default function GroupPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -35,9 +36,21 @@ export default function GroupPage() {
             </Link>
           </div>
         </div>
-        <div className="hero-art">
-          <img src={group.art} width="1024" height="768" alt={group.alt} />
-        </div>
+        {group.underConstruction ? (
+          // Groups that are not built yet show the construction picture as the main item
+          <div className="hero-art">
+            <img
+              src={constructionArt}
+              width="900"
+              height="900"
+              alt="Cartoon capybara in a yellow hard hat and orange safety vest, holding a hammer in front of a building site with a crane and two more capybara builders. A hazard-striped sign reads Under construction."
+            />
+          </div>
+        ) : (
+          <div className="hero-art">
+            <img src={group.art} width="1024" height="768" alt={group.alt} />
+          </div>
+        )}
       </section>
 
       <section className="planned" aria-labelledby="planned-title">
