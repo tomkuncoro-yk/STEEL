@@ -1,0 +1,636 @@
+/* ------------------------------------------------------------------
+   Tool pages: steps, upload, forms, tool panels, tables, bar chart
+   (uses the tokens defined at the top of index.css)
+   Kept compact on purpose: every panel should fit in one screen.
+------------------------------------------------------------------- */
+
+:root {
+  --grid: #e8e6e6; /* hairline gridlines, one step off the surface */
+}
+
+/* Buttons share the pill look; these are the states links never have */
+button.pill {
+  cursor: pointer;
+}
+
+.pill:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pill-solid:disabled:hover {
+  background: var(--action);
+}
+
+/* ---------- Page head ---------- */
+.page-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 20px;
+  padding-block: 4px 16px;
+}
+
+.page-head h1 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+.page-head .lead {
+  font-size: 0.9375rem;
+}
+
+/* ---------- Steps ---------- */
+/* Steps 1 and 2 sit side by side; step 3 (the tools) spans the full width */
+.steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 20px 28px;
+  max-width: 64rem;
+  padding: 0 0 clamp(32px, 4vw, 48px);
+  margin: 0;
+  list-style: none;
+}
+
+.step {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.step:nth-child(3) {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+}
+
+.step-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step-head h2 {
+  font-size: 1.125rem;
+  letter-spacing: -0.015em;
+}
+
+.step-number {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--action);
+  color: #fff;
+  font-family: var(--font-inter);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.step-locked .step-number {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted-ink);
+}
+
+.step-locked .step-head h2 {
+  color: var(--muted-ink);
+}
+
+.step > p.muted {
+  font-size: 0.875rem;
+}
+
+/* ---------- Upload ---------- */
+.dropzone {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 20px 20px 16px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.dropzone:hover,
+.dropzone.is-dragging {
+  border-color: var(--ink);
+  background: var(--surface-soft);
+}
+
+.dropzone-title {
+  font-family: var(--font-inter);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.dropzone-note {
+  transform: rotate(-3deg);
+  font-size: 1rem;
+}
+
+.file-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.file-card .card-title {
+  overflow-wrap: anywhere;
+}
+
+.file-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.file-card-actions .pill {
+  padding: 0.4rem 0.85rem;
+}
+
+.upload:focus-within .dropzone {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ---------- Column step ---------- */
+.column-step {
+  display: grid;
+  gap: 8px;
+}
+
+.samples {
+  display: grid;
+  gap: 4px;
+}
+
+/* One line per example, cut off with an ellipsis */
+.samples li {
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Form controls ---------- */
+.field {
+  display: grid;
+  gap: 4px;
+  align-content: start;
+}
+
+.field label {
+  font-family: var(--font-inter);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.field input[type='number'],
+.field select,
+.field textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+}
+
+.field textarea {
+  resize: vertical;
+  line-height: 1.45;
+}
+
+.field input:disabled,
+.field select:disabled,
+.field textarea:disabled {
+  background: var(--surface-soft);
+  color: var(--muted-ink);
+}
+
+.field-hint {
+  display: block;
+  color: var(--muted-ink);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.field-check {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 8px;
+}
+
+.field-check input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--action);
+}
+
+.field-check label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.field-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px 20px;
+}
+
+.field-group .field:not(.field-check) {
+  width: 150px;
+}
+
+.field-group .field.field-select {
+  width: 200px;
+}
+
+/* ---------- Tool panels ---------- */
+.tool-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.tool-panel {
+  display: grid;
+  gap: 12px;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--canvas);
+}
+
+/* Title and description share a line */
+.tool-panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 14px;
+}
+
+.tool-panel-head h3 {
+  font-size: 1.0625rem;
+}
+
+.tool-panel-head p {
+  font-size: 0.8125rem;
+}
+
+/* Settings on the left, the button on the right */
+.tool-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px 20px;
+}
+
+.settings {
+  flex: 1 1 380px;
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.settings-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 10px 24px;
+}
+
+.settings-row > .field:first-child {
+  flex: 1 1 280px;
+}
+
+.field-stack {
+  display: grid;
+  gap: 8px;
+  padding-top: 22px;
+}
+
+.tool-actions {
+  flex: none;
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+}
+
+.tool-actions .metadata {
+  max-width: 200px;
+  text-align: right;
+  font-size: 0.75rem;
+}
+
+.tool-results:empty {
+  display: none;
+}
+
+.tool-results {
+  padding-top: 12px;
+  border-top: 1px solid var(--grid);
+}
+
+/* ---------- Results ---------- */
+.result {
+  display: grid;
+  gap: 10px;
+}
+
+.result-summary {
+  font-family: var(--font-inter);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.result-actions .pill {
+  padding: 0.4rem 0.9rem;
+}
+
+.notice {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-soft);
+  font-size: 0.875rem;
+}
+
+.notice-error {
+  border-color: var(--ink);
+  background: var(--canvas);
+}
+
+/* Chart and table side by side */
+.result-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.table-wrap {
+  max-height: 280px;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.result-table th,
+.result-table td {
+  padding: 5px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--grid);
+}
+
+.result-table tbody tr:last-child th,
+.result-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.result-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  font-family: var(--font-inter);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--muted-ink);
+}
+
+.result-table tbody th {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.result-table .big-label {
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.result-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ---------- Bar chart ---------- */
+.bar-chart {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
+.bar-chart figcaption {
+  font-size: 0.75rem;
+}
+
+.bar-list {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(60px, 120px) minmax(0, 1fr) 48px;
+  align-items: center;
+  height: 26px;
+  border-radius: 8px;
+  outline-offset: 2px;
+}
+
+.bar-label {
+  padding-right: 10px;
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8125rem;
+}
+
+/* The track holds the hairline gridlines, drawn at every tick */
+.bar-track {
+  position: relative;
+  height: 100%;
+  border-right: 1px solid var(--grid);
+  background-image: linear-gradient(to right, var(--grid) 1px, transparent 1px);
+  background-size: calc(100% / var(--intervals)) 100%;
+}
+
+.bar {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: var(--share);
+  height: 16px;
+  transform: translateY(-50%);
+  border-radius: 0 4px 4px 0; /* square at the baseline, rounded at the tip */
+  background: var(--ink);
+}
+
+.bar-value {
+  position: absolute;
+  left: calc(var(--share) + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-inter);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.bar-row:hover .bar,
+.bar-row:focus-visible .bar {
+  background: #3a3a3a;
+}
+
+/* Sits beside the value label, level with its own bar, so it never covers a neighbour.
+   Light with a thin outline so it stays readable over both white and black. */
+.bar-tip {
+  position: absolute;
+  left: calc(var(--share) + 48px);
+  top: 50%;
+  z-index: 2;
+  display: none;
+  padding: 5px 10px;
+  border: 1px solid var(--ink);
+  border-radius: 12px;
+  background: var(--canvas);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  color: var(--ink);
+  font-family: var(--font-inter);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Long bars: the tooltip goes to the left of the bar's end instead */
+.bar-row[data-flip='true'] .bar-tip {
+  left: var(--share);
+  transform: translate(calc(-100% - 12px), -50%);
+}
+
+.bar-tip strong {
+  margin-right: 4px;
+}
+
+.bar-tip-detail {
+  display: block;
+  color: var(--muted-ink);
+  font-size: 0.6875rem;
+}
+
+.bar-row:hover .bar-tip,
+.bar-row:focus-visible .bar-tip {
+  display: block;
+}
+
+.bar-axis {
+  display: grid;
+  grid-template-columns: minmax(60px, 120px) minmax(0, 1fr) 48px;
+}
+
+.bar-axis-ticks {
+  position: relative;
+  height: 16px;
+}
+
+.bar-axis-ticks span {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  color: var(--muted-ink);
+  font-family: var(--font-inter);
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Narrower screens ---------- */
+@media (max-width: 860px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .result-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .field-group .field:not(.field-check),
+  .field-group .field.field-select {
+    width: 100%;
+  }
+
+  .tool-actions {
+    justify-items: start;
+    width: 100%;
+  }
+
+  .tool-actions .metadata {
+    text-align: left;
+  }
+
+  .bar-row,
+  .bar-axis {
+    grid-template-columns: 76px minmax(0, 1fr) 40px;
+  }
+
+  .result-table th,
+  .result-table td {
+    padding: 5px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropzone {
+    transition: none;
+  }
+}
