@@ -1,4 +1,6 @@
-# Digital Tools
+# STEEL-SPIR
+
+Sheffield Texts Exploration and Examination Lab.
 
 Front page for a collection of small, browser-only data tools. Vite + React + TypeScript, plain CSS, no backend.
 

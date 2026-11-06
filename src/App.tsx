@@ -15,8 +15,9 @@ export default function App() {
       </button>
 
       <header className="rail">
-        <Link className="wordmark" to="/">
-          Digital Tools
+        <Link className="wordmark" to="/" aria-label="STEEL-SPIR, Sheffield Texts Exploration and Examination Lab">
+          <span className="wordmark-name">STEEL-SPIR</span>
+          <span className="wordmark-sub">Sheffield Texts Exploration and Examination Lab</span>
         </Link>
         <nav className="rail-actions" aria-label="Main">
           <Link className="pill pill-solid" to="/" state={{ scrollTo: 'groups' }}>
@@ -38,7 +39,7 @@ export default function App() {
       </main>
 
       <footer className="footer">
-        <p className="metadata">Digital Tools</p>
+        <p className="metadata">STEEL-SPIR · Sheffield Texts Exploration and Examination Lab</p>
         <p className="metadata muted">
           Illustrations: Open Doodles by Pablo Stanley (CC0), recoloured.
         </p>
