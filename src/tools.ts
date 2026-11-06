@@ -2,6 +2,8 @@ import filteringArt from './assets/art/filtering.svg'
 import textAnalysisArt from './assets/art/text-analysis.svg'
 import networksArt from './assets/art/networks.svg'
 import visualisationArt from './assets/art/visualisation.svg'
+import encryptionArt from './assets/art/conversion.svg'
+import imageSorterArt from './assets/art/presets.svg'
 
 // One entry per group. The front page is generated from this list, and the
 // tool pages will be generated from the `tools` arrays later.
@@ -76,5 +78,27 @@ export const groups: ToolGroup[] = [
     ],
     art: visualisationArt,
     alt: 'Hand-drawn illustration of a person taking a selfie with a phone',
+  },
+  {
+    slug: 'encrypt-decrypt',
+    underConstruction: true,
+    name: 'Encrypt / decrypt',
+    blurb: 'Lock and unlock text, or pseudonymise a column, with AES-128.',
+    tools: [
+      'Encrypt (AES-128)',
+      'Decrypt (AES-128)',
+      'Pseudonymise a column (AES-128)',
+    ],
+    art: encryptionArt,
+    alt: 'Hand-drawn illustration for the encrypt and decrypt tools',
+  },
+  {
+    slug: 'image-sorter',
+    underConstruction: true,
+    name: 'Image sorter',
+    blurb: 'Sort and download images, keeping each one traceable to its source.',
+    tools: ['Sort images', 'Download images (traceable to source)'],
+    art: imageSorterArt,
+    alt: 'Hand-drawn illustration for the image sorter tools',
   },
 ]

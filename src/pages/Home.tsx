@@ -78,6 +78,14 @@ export default function Home() {
                   aria-hidden="true"
                 >
                   <img src={group.art} alt={group.alt} loading="lazy" width="1024" height="768" />
+                  {group.underConstruction && (<>
+                      <span className="fund-banner fund-banner-top" aria-hidden="true">
+                        <span>Under construction</span>
+                      </span>
+                      <span className="fund-banner fund-banner-bottom" aria-hidden="true">
+                        <span>Awaiting fund</span>
+                      </span>
+                    </>)}
                 </Link>
                 <h3 className="card-title">{group.name}</h3>
                 <p className="metadata muted">
@@ -89,16 +97,11 @@ export default function Home() {
                   <Link
                     className="pill pill-solid card-button"
                     to={`/${group.slug}`}
-                    aria-label={`Open group: ${group.name}${group.underConstruction ? ' (under construction)' : ''}`}
+                    aria-label={`Open group: ${group.name}${group.underConstruction ? ' (under construction, awaiting fund)' : ''}`}
                   >
                     Open group
                     <span aria-hidden="true">→</span>
                   </Link>
-                  {group.underConstruction && (
-                    <span className="construction-tag" aria-hidden="true">
-                      Under construction
-                    </span>
-                  )}
                 </div>
               </article>
             </li>
